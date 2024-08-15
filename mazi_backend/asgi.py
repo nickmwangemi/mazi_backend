@@ -18,7 +18,7 @@ from channels.auth import AuthMiddlewareStack
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mazi_backend.settings')
 django.setup()
 
-from station_management.routing import websocket_urlpatterns
+from station_management.routing import websocket_urlpatterns # noqa
 
 application = ProtocolTypeRouter({
     "http": get_asgi_application(),
