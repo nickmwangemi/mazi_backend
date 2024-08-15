@@ -70,3 +70,19 @@ the [official website](https://www.python.org/downloads/).
 ```bash
   python manage.py runserver
 ```
+
+### Usage
+The app uses celery to asychronously. To start the celery worker, run the following command:
+```bash
+  celery -A mazi_backend worker --loglevel=info
+```
+
+
+### Monitoring Celery with Flower
+[Flower](https://flower.readthedocs.io/en/latest/) is a real-time web application monitoring and administration tool for Celery.
+
+On a separate terminal, run the following command to start Flower:
+```bash
+celery -A mazi_backend flower --port=5555
+```
+Navigate to `http://localhost:5555` to view the Flower dashboard. Click "Tasks" to view the tasks that have been executed.
