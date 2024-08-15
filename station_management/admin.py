@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import SwappingStation, Battery, IoTData
+
+from .models import Battery, IoTData, SwappingStation
 
 admin.site.register(SwappingStation)
 admin.site.register(Battery)

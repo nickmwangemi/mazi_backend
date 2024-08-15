@@ -15,20 +15,21 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import include, path
 from rest_framework.routers import DefaultRouter
 
-
-from station_management.views import SwappingStationViewSet, BatteryViewSet, IoTDataViewSet
-
+from station_management.views import (
+    BatteryViewSet,
+    IoTDataViewSet,
+    SwappingStationViewSet,
+)
 
 router = DefaultRouter()
-router.register(r'stations', SwappingStationViewSet)
-router.register(r'batteries', BatteryViewSet)
-router.register(r'iot-data', IoTDataViewSet)
+router.register(r"stations", SwappingStationViewSet)
+router.register(r"batteries", BatteryViewSet)
+router.register(r"iot-data", IoTDataViewSet)
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('api/v1/', include(router.urls)),
+    path("admin/", admin.site.urls),
+    path("api/v1/", include(router.urls)),
 ]
-

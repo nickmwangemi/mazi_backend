@@ -70,4 +70,3 @@ the [official website](https://www.python.org/downloads/).
 ```bash
   python manage.py runserver
 ```
-

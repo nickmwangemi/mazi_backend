@@ -1,7 +1,9 @@
 import asyncio
-import websockets
 import json
 import random
+
+import websockets
+
 
 async def send_iot_data():
     uri = "ws://localhost:8000/ws/iot/"
@@ -18,7 +20,7 @@ async def send_iot_data():
                 "temperature": round(random.uniform(20, 60), 2),
                 "voltage": round(random.uniform(3.6, 4.2), 2),
                 "current": round(random.uniform(0, 10), 2),
-                "charge_level": random.randint(0, 100)
+                "charge_level": random.randint(0, 100),
             }
             await websocket.send(json.dumps(data))
             print(f"> Sent: {data}")
@@ -27,5 +29,6 @@ async def send_iot_data():
             print(f"< {response}")
 
             await asyncio.sleep(1)  # Wait for 1 second between messages
+
 
 asyncio.get_event_loop().run_until_complete(send_iot_data())
