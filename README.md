@@ -71,12 +71,3 @@ the [official website](https://www.python.org/downloads/).
   python manage.py runserver
 ```
 
-## Setup pre-commit
-
-The project has linting enabled using pre-commit. It runs on the CI pipeline, so you need to enable locally as well. Run
-the following to allow Precommit to format and fix any linting errors on your code.
-
-```
-pre-commit install
-```
-
