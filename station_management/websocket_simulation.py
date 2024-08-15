@@ -6,7 +6,7 @@ import websockets
 
 
 async def send_iot_data():
-    uri = "ws://localhost:8000/ws/iot/"
+    uri = "ws://localhost:8001/ws/iot/"
     async with websockets.connect(uri) as websocket:
         # Simulate connection message
         response = await websocket.recv()
