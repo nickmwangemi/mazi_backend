@@ -1,3 +1,6 @@
 from django.contrib import admin
+from .models import SwappingStation, Battery, IoTData
 
-# Register your models here.
+admin.site.register(SwappingStation)
+admin.site.register(Battery)
+admin.site.register(IoTData)
