@@ -45,3 +45,12 @@ def process_iot_data(data):
 def alert_high_temperature(battery_id, temperature):
     # Implement alerting logic (e.g., send email, push notification)
     pass
+
+
+@shared_task
+def check_battery_health():
+    unhealthy_batteries = Battery.objects.filter(health__lt=80)
+    for battery in unhealthy_batteries:
+        # Implement notification logic
+        message = f"Battery {battery.id} needs maintenance. Health: {battery.health}%"
+        print(message)

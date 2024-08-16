@@ -45,3 +45,31 @@ class IoTConsumer(AsyncWebsocketConsumer):
                     {"message": f"Error processing data: {str(e)}", "status": "error"}
                 )
             )
+
+
+class SwappingStationStatusConsumer(AsyncWebsocketConsumer):
+    async def connect(self):
+        self.station_id = self.scope["url_route"]["kwargs"]["station_id"]
+        self.station_group_name = f"station_{self.station_id}"
+
+        await self.channel_layer.group_add(self.station_group_name, self.channel_name)
+
+        await self.accept()
+
+    async def disconnect(self, close_code):
+        await self.channel_layer.group_discard(
+            self.station_group_name, self.channel_name
+        )
+
+    async def receive(self, text_data):
+        text_data_json = json.loads(text_data)
+        message = text_data_json["message"]
+
+        await self.channel_layer.group_send(
+            self.station_group_name, {"type": "station_status", "message": message}
+        )
+
+    async def station_status(self, event):
+        message = event["message"]
+
+        await self.send(text_data=json.dumps({"message": message}))

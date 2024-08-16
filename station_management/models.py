@@ -10,6 +10,12 @@ class SwappingStation(models.Model):
     def __str__(self):
         return self.name
 
+    def update_status(self):
+        pass
+
+    def has_capacity(self):
+        pass
+
 
 class Battery(models.Model):
     serial_number = models.CharField(max_length=50, unique=True)
